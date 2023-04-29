@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://dn1ynaao7ky53"]
+
+[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_1r5x7"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1r5x7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = 200.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+alignment = 1
+
+[node name="StartBtn" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(78, 0)
+layout_mode = 2
+text = "Start"
+
+[node name="OptionsBtn" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(78, 0)
+layout_mode = 2
+text = " Options "
+
+[node name="HelpBtn" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(78, 0)
+layout_mode = 2
+text = "Help"
+
+[node name="QuitBtn" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(78, 0)
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="HBoxContainer/StartBtn" to="." method="_on_start_btn_pressed"]
+[connection signal="pressed" from="HBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
