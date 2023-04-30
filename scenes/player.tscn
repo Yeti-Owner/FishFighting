@@ -3,15 +3,14 @@
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_nqkiv"]
 [ext_resource type="Texture2D" uid="uid://c4ot6mh076fv5" path="res://assets/textures/lilguy.png" id="1_p6u42"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xke4f"]
-size = Vector2(70, 80)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_127fn"]
+size = Vector2(14, 16)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_nqkiv")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(5, 5)
-texture = ExtResource("1_p6u42")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_xke4f")
+shape = SubResource("RectangleShape2D_127fn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_p6u42")
