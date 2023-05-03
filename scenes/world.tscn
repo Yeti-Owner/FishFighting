@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://x1suwjryon67"]
+[gd_scene load_steps=6 format=3 uid="uid://x1suwjryon67"]
 
 [ext_resource type="PackedScene" uid="uid://dr8gigk6xsj7k" path="res://scenes/player.tscn" id="1_jt5e2"]
 [ext_resource type="Texture2D" uid="uid://dehpb6lp3fqrx" path="res://assets/textures/tileset.png" id="1_p60j4"]
@@ -14,6 +14,9 @@ texture = ExtResource("1_p60j4")
 [sub_resource type="TileSet" id="TileSet_shk6w"]
 sources/0 = SubResource("TileSetAtlasSource_d31nm")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_okdwt"]
+size = Vector2(373, 20)
+
 [node name="World" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -23,3 +26,33 @@ layer_0/tile_data = PackedInt32Array(0, 131072, 0, 65536, 196608, 0, 131072, 131
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("1_jt5e2")]
 position = Vector2(158, 96)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(194, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-9.5, 0)
+shape = SubResource("RectangleShape2D_okdwt")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(194, 218)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-9.5, 0)
+shape = SubResource("RectangleShape2D_okdwt")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(-10, 76)
+rotation = 1.57079
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-9.5, 0)
+shape = SubResource("RectangleShape2D_okdwt")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(378, 76)
+rotation = 1.57079
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(-9.5, 0)
+shape = SubResource("RectangleShape2D_okdwt")

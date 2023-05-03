@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2tr06sp0s0bh"]
+
+[ext_resource type="Texture2D" uid="uid://bw5qvaw1f2gds" path="res://assets/textures/bobber.png" id="1_f788i"]
+
+[node name="Bobber" type="Sprite2D"]
+texture = ExtResource("1_f788i")
