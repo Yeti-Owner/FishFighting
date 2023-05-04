@@ -1,6 +1,120 @@
-[gd_scene load_steps=2 format=3 uid="uid://b2tr06sp0s0bh"]
+[gd_scene load_steps=8 format=3 uid="uid://b2tr06sp0s0bh"]
 
 [ext_resource type="Texture2D" uid="uid://bw5qvaw1f2gds" path="res://assets/textures/bobber.png" id="1_f788i"]
+[ext_resource type="Script" path="res://scripts/bobber.gd" id="2_cln5b"]
 
-[node name="Bobber" type="Sprite2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_runfk"]
+radius = 5.09902
+
+[sub_resource type="Animation" id="Animation_uqwai"]
+resource_name = "idle"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bobber:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.7, 0.7), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dspsh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bobber:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bobber:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_yduih"]
+resource_name = "struggle"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bobber:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.5, 0.5), Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Bobber:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, -0.174533, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ijh72"]
+_data = {
+"RESET": SubResource("Animation_dspsh"),
+"idle": SubResource("Animation_uqwai"),
+"struggle": SubResource("Animation_yduih")
+}
+
+[node name="Bobber" type="Node2D"]
+visible = false
+script = ExtResource("2_cln5b")
+
+[node name="Bobber" type="Sprite2D" parent="."]
 texture = ExtResource("1_f788i")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_runfk")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ijh72")
+}
+
+[node name="CatchTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="StruggleTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="CatchTimer" to="." method="_on_catch_timer_timeout"]
+[connection signal="timeout" from="StruggleTimer" to="." method="_on_struggle_timer_timeout"]

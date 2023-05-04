@@ -8,7 +8,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_127fn"]
 size = Vector2(14, 16)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D"]
 script = ExtResource("1_nqkiv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -24,7 +24,8 @@ drag_vertical_enabled = true
 [node name="GUI" parent="." instance=ExtResource("3_3rrta")]
 
 [node name="Casting" type="Line2D" parent="."]
-points = PackedVector2Array(80, 0, 0, 0)
+visible = false
+points = PackedVector2Array(120, 0, 0, 0)
 width = 2.0
 script = ExtResource("5_u1dfq")
 
@@ -32,7 +33,7 @@ script = ExtResource("5_u1dfq")
 position = Vector2(16, 0)
 
 [node name="posEnd" type="Marker2D" parent="Casting"]
-position = Vector2(80, 0)
+position = Vector2(120, 0)
 
 [node name="CastTimer" type="Timer" parent="Casting"]
 wait_time = 4.0
