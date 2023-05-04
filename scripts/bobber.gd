@@ -8,6 +8,7 @@ extends Node2D
 func _ready():
 	randomize()
 
+@warning_ignore("unused_parameter")
 func _physics_process(delta):
 	if Input.is_action_just_pressed("cast") && EventBus.PlayerState == 1:
 		_catch()
@@ -40,12 +41,11 @@ func _on_struggle_timer_timeout():
 
 func _catch():
 	if StruggleTimer.is_stopped():
-#		print("nope")
-		EventBus.PlayerState = 0
+		EventBus.AllowMovement.emit(true)
 		self.queue_free()
 	else:
 		print("Caught!")
-		EventBus.PlayerState = 0
+		EventBus.AllowMovement.emit(true)
 		self.queue_free()
 
 

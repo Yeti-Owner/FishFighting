@@ -23,6 +23,7 @@ EventBus="*res://scripts/event_bus.gd"
 
 window/size/viewport_width=480
 window/size/viewport_height=270
+window/size/mode=4
 window/size/borderless=true
 window/vsync/vsync_mode=3
 window/stretch/mode="canvas_items"

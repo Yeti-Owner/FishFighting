@@ -9,8 +9,8 @@ func _process(_delta):
 	
 	if EventBus.PlayerState == 0:
 		if Input.is_action_just_pressed("cast"):
-			timer.start()
-			print("started")
+			Cast = true
+			timer.start(4)
 		if Input.is_action_just_released("cast"):
 			_cast(timer.time_left)
 	elif EventBus.PlayerState == 1:
@@ -18,10 +18,12 @@ func _process(_delta):
 			EventBus.PlayerState = 0
 
 func _cast(time):
-	timer.stop()
-	time = max(time, 1)
-	var Distance = ($posStart.global_position - $posEnd.global_position)*(1/time)
-	var bobber:PackedScene = load("res://scenes/bobber.tscn")
-	var _bobber:Node = bobber.instantiate()
-	get_parent().get_parent().add_child(_bobber)
-	_bobber.global_position = ($posStart.global_position - Distance)
+	if Cast == true:
+		timer.stop()
+		time = max(time, 1)
+		var Distance = ($posStart.global_position - $posEnd.global_position)*(1/time)
+		var bobber:PackedScene = load("res://scenes/bobber.tscn")
+		var _bobber:Node = bobber.instantiate()
+		get_parent().get_parent().add_child(_bobber)
+		_bobber.global_position = ($posStart.global_position - Distance)
+		Cast = false
