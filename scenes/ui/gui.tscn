@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bt5kdsa2pxgc8"]
+[gd_scene load_steps=3 format=3 uid="uid://bt5kdsa2pxgc8"]
 
 [ext_resource type="Script" path="res://scripts/ui/gui.gd" id="1_2aw6g"]
+[ext_resource type="PackedScene" uid="uid://c46uepa3ikvyt" path="res://scenes/ui/inventory.tscn" id="2_u347d"]
 
 [node name="GUI" type="CanvasLayer"]
 script = ExtResource("1_2aw6g")
@@ -12,3 +13,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -4.0
+offset_right = 4.0
+offset_bottom = 8.0
+grow_horizontal = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 12
+text = "Inventory"
+
+[node name="Inventory" parent="Control" instance=ExtResource("2_u347d")]
+layout_mode = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -166.0
+offset_top = 7.0
+offset_right = -7.0
+offset_bottom = 34.0
+grow_horizontal = 0
+max_value = 4.0
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

@@ -6,23 +6,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_runfk"]
 radius = 5.09902
 
-[sub_resource type="Animation" id="Animation_uqwai"]
-resource_name = "idle"
-length = 1.5
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Bobber:scale")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.75, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.7, 0.7), Vector2(1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_dspsh"]
 length = 0.001
 tracks/0/type = "value"
@@ -48,6 +31,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_uqwai"]
+resource_name = "idle"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bobber:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.7, 0.7), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_yduih"]
@@ -114,7 +114,6 @@ one_shot = true
 wait_time = 4.0
 one_shot = true
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="CatchTimer" to="." method="_on_catch_timer_timeout"]
 [connection signal="timeout" from="StruggleTimer" to="." method="_on_struggle_timer_timeout"]
